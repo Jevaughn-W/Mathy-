@@ -19,12 +19,12 @@ class Game
   end
 
   # Print out the generated question with the player name and accept palayer answer
-  def self.prompt
+  def self.prompt(question, answer)
     
-    puts "\n#{@@selected.name}: #{Questions.generate}" 
+    puts "\n#{@@selected.name}: #{question}" 
     player_answer = gets.chomp
 
-    if player_answer.to_i == Questions.answer
+    if player_answer.to_i == answer
       @@selected.score += 1
       puts "\nYES! Your are correct."
       puts "\n#{@@selected.name}: #{@@selected.lives}/3 vs #{@@nexturn.name}: #{@@nexturn.lives}/3"
@@ -62,7 +62,9 @@ class Game
     while start_game do
       
       self.select_player
-      self.prompt
+      question = Questions.generate
+      answer = Questions.answer
+      self.prompt(question, answer)
 
       # Check for conditions to end game
       @@players.each do |player|
@@ -89,5 +91,3 @@ class Game
   end
 
 end
-
-# puts Game.players
