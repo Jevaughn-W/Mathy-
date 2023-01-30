@@ -27,13 +27,32 @@ class Game
       @@selected.score += 1
       puts "\nYES! Your are correct."
       puts "#{@@selected.name}: #{@@selected.lives}/3 vs #{@@nexturn.name}: #{@@nexturn.lives}/3"
+      self.update_turn
     else 
       @@selected.lives -= 1
       puts "\nSeriously? No!"
       puts "#{@@selected.name}: #{@@selected.lives}/3 vs #{@@nexturn.name}: #{@@nexturn.lives}/3"
+      self.update_turn
     end
+
   end
 
+  # function to change whose turn it is and update the players array
+  def self.update_turn
+    @@players.pop(2)
+
+    @@selected.turn = false
+    @@nexturn.turn = true
+
+    @@players.push(@@selected)
+    @@players.push(@@nexturn)
+  end
+
+  # Run game
+
+  def self.start_game
+      
+  end
 
 end
 
