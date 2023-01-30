@@ -50,8 +50,29 @@ class Game
 
   # Run game
 
-  def self.start_game
+  def self.start_game(player_one, player_two)
+    
+    start_game = true
+    
+    self.new(player_one, player_two)
+
+
+    # Loops until a player dies
+    while start_game do
       
+      self.select_player
+      self.prompt
+
+      # Check for conditions to end game
+      @@players.each do |player|
+        if player.lives == 0
+          start_game = false
+        end
+      end
+      
+      puts "\n--- New Turn ---"
+    end
+
   end
 
 end
