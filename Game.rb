@@ -24,7 +24,6 @@ class Game
     player_answer = gets.chomp
 
     if player_answer.to_i == answer
-      @@selected.score += 1
       puts "\nYES! Your are correct."
       puts "\n#{@@selected.name}: #{@@selected.lives}/3 vs #{@@nexturn.name}: #{@@nexturn.lives}/3"
       self.update_turn
