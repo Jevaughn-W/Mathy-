@@ -20,18 +20,19 @@ class Game
 
   # Print out the generated question with the player name and accept palayer answer
   def self.prompt
+    
     puts "\n#{@@selected.name}: #{Questions.generate}" 
     player_answer = gets.chomp
 
     if player_answer.to_i == Questions.answer
       @@selected.score += 1
       puts "\nYES! Your are correct."
-      puts "#{@@selected.name}: #{@@selected.lives}/3 vs #{@@nexturn.name}: #{@@nexturn.lives}/3"
+      puts "\n#{@@selected.name}: #{@@selected.lives}/3 vs #{@@nexturn.name}: #{@@nexturn.lives}/3"
       self.update_turn
     else 
       @@selected.lives -= 1
       puts "\nSeriously? No!"
-      puts "#{@@selected.name}: #{@@selected.lives}/3 vs #{@@nexturn.name}: #{@@nexturn.lives}/3"
+      puts "\n#{@@selected.name}: #{@@selected.lives}/3 vs #{@@nexturn.name}: #{@@nexturn.lives}/3"
       self.update_turn
     end
 
@@ -70,9 +71,21 @@ class Game
         end
       end
       
-      puts "\n--- New Turn ---"
+      if (start_game)
+        puts "\n--- New Turn ---"
+      end
+
     end
 
+
+    # Declare winner
+    @@players.each do |player|
+      if player.lives > 0
+        puts "\n#{player.name} wins with a score of #{player.lives}/3"
+        puts "\n--- Game Over ---"
+        puts "Good bye!"
+      end
+    end
   end
 
 end
