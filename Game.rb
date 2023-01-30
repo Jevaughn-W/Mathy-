@@ -2,11 +2,11 @@ class Game
   
 
   def initialize(player_one, player_two)
-    @@players = [ player_one, player_two] #using class variable as no objects will be created here
+    @@players = [ player_one, player_two] # Add players to an array so they can be easily compared using for loop
   end
   
   
-  # Implement function to check turn based on the player whose turn is true
+  # Implement function to select player based on the player whose turn is true
   def self.select_player
     @@players.each do |player|
       if player.turn == true
@@ -14,11 +14,10 @@ class Game
       else
         @@nexturn = player
       end
-      
     end
   end
 
-  # Print out the generated question with the player name and accept palayer answer
+  # Print out the generated question with the player name and accept player answer
   def self.prompt(question, answer)
     
     puts "\n#{@@selected.name}: #{question}" 
@@ -38,7 +37,7 @@ class Game
 
   end
 
-  # function to change whose turn it is and update the players array
+  # Function to change whose turn it is and update the players array
   def self.update_turn
     @@players.pop(2)
 
